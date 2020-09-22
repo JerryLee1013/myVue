@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  {{message}}
+</div>
+<div id="app-2">
+  <span v-bind:title="message">
+    查看此处的绑定信息
+  </span>
+</div>
+<div id="app-3">
+  <input type="text" v-model="message">
+  <p>{{message}}</p>
+</div>
+<div id="app-4">
+  <p v-if="seen">能看见</p>
+</div>
+<div id="app-5">
+  <ul>
+    <li v-for="todo in todos" v-if="todo.isDone">
+      {{todo.text,todo.isDone}}
+    </li>
+  </ul>
+</div>
+
+<div id="app-6">
+  <p>{{inputMsg}}</p>
+  <button v-on:click="reverseMsg">反转消息</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var app = new Vue({
+    el:"#app",
+    data:{
+      message:"HelloVue"
+    }
+  })
+
+  var app2 = new Vue({
+    el:"#app-2",
+    data:{
+      message: "页面加载于" + new Date().toLocaleString()
+    }
+  })
+
+  var app3 = new Vue({
+    el:"#app-3",
+    data:{
+      message:"哈哈哈"
+    }
+  })
+
+  const vm4 = new Vue({
+    el:"#app-4",
+    data:{
+      seen:false
+
+    }
+  })
+
+  const vm5 = new Vue({
+    el:"#app-5",
+    data:{
+      todos:[
+        {text:"啪啪啪",isDone:true},
+        {text:"么么么",isDone:false},
+        {text:"哒哒哒",isDone:true},
+      ]
+    },
+    methods: {
+      method:()=>{
+        console.log(this);
+      }
+    }
+  })
+
+  const vm6 = new Vue({
+    el:"#app-6",
+    data:{
+      inputMsg:"HelloVUE"
+    },
+    methods:{
+      reverseMsg:function () {
+        this.inputMsg = this.inputMsg.split("").reverse().join("")
+        console.log(this);
+      }
+    }
+  })
+</script>
+</body>
+</html>
