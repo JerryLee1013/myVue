@@ -33,15 +33,21 @@
   <h2>1. 双大括号表达式</h2>
   <p>{{content}}</p>
   <p>{{content.toUpperCase()}}</p>
+  <p v-text="msg.toUpperCase()"></p>
+  <p v-html="msg"></p>
 
   <h2>2. 指令一: 强制数据绑定</h2>
   <a href="url">访问指定站点</a><br>
   <a v-bind:href="url">访问指定站点2</a><br>
   <a :href="url">访问指定站点2</a><br>
+  <img src="imgUrl" alt="vue">
+  <img v-bind:src="imgUrl" alt="vue">
+  <img :src="imgUrl" alt="vue">
 
   <h2>3. 指令二: 绑定事件监听</h2>
   <button v-on:click="test">点我</button>
   <button @click="test">点我</button>
+  <button @click="test2(str)">点击</button>
 
 </div>
 
@@ -52,11 +58,17 @@
     el: '#app',
     data: {
       content: 'NBA I Love This Game',
-      url: 'http://www.atguigu.com'
+      url: 'https://www.baidu.com',
+      msg:"<a href = 'https://www.baidu.com'>点击百度</a>",
+      imgUrl:"https://cn.vuejs.org/images/logo.png",
+      str:"data中的数据"
     },
     methods: {
       test () {
         alert('好啊!!!')
+      },
+      test2(msg){
+        alert(msg)
       }
     }
   })
