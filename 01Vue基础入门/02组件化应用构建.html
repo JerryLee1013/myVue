@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>Document</title>
+</head>
+<body>
+<div id="app1">
+  <ul>
+    <!--  创建一个todo-item组件实例   -->
+    <todo-item v-for="todo in todoList"
+               v-bind:todo="todo"
+               v-bind:key="todo.id">
+    </todo-item>
+  </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  Vue.component("todo-item",{
+    props:["todo"],
+    template:"<li>{{todo.text}}</li>"
+  })
+  var app = new Vue({
+    el:"#app1",
+    data:{
+      todoList:[
+        {id:0,text:"吃饭"},
+        {id:1,text:"睡觉"},
+        {id:2,text:"打豆豆"}
+      ]
+    }
+  })
+</script>
+</body>
+</html>
