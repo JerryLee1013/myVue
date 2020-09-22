@@ -8,8 +8,8 @@ Vue是一套用于构建用户界面的渐进式框架。与其它大型框架�
 
 ##  Vue入门使用
 
-1.引入Vue.js
-2.创建Vue对象
+1.  引入Vue.js
+2.  创建Vue对象
 
 ```javascript
 new Vue({
@@ -17,9 +17,9 @@ new Vue({
   data:初始化数据
 })
 ```
-3.双向数据绑定:v-model
-4.显示数据{{xxx}}
-5.理解vue的mvvm实现
+3.  双向数据绑定:v-model
+4.  显示数据{{xxx}}
+5.  理解vue的mvvm实现
   - m:数据模型
   - v:视图(DOM)
   - vm:视图模型 (Vue对象)
