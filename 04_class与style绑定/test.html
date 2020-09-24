@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <title>04_class与style绑定</title>
   <style>
+    .cClass{
+      background-color: pink;
+    }
+    .myClass{
+      color: red;
+    }
+    .newClass{
+      color: yellow;
+      font-size: 30px;
+    }
     .classA {
       color: red;
     }
@@ -32,9 +42,9 @@
 
 <div id="demo">
   <h2>1. class绑定: :class='xxx'</h2>
-  <p :class="myClass">xxx是字符串</p>
+  <p class="cClass" :class="myClass">xxx是字符串</p>
   <p :class="{classA: hasClassA, classB: hasClassB}">xxx是对象</p>
-  <p :class="['classA', 'classB']">xxx是数组</p>
+  <p :class="['classA', cClass]">xxx是数组</p>
 
   <h2>2. style绑定</h2>
   <p :style="{color:activeColor, fontSize}">:style="{ color: activeColor, fontSize: fontSize + 'px' }"</p>
@@ -48,22 +58,23 @@
   new Vue({
     el: '#demo',
     data: {
-      myClass: 'classA',
-      hasClassA: true,
-      hasClassB: false,
-      activeColor: 'red',
-      fontSize: '20px'
+      myClass:"myClass",
+      hasClassA:true,
+      hasClassB:false,
+      cClass:"classC",
+      activeColor:"red",
+      fontSize:"50px"
     },
-
-    methods: {
-      update () {
-        this.myClass = 'classB'
-        this.hasClassA = !this.hasClassA
-        this.hasClassB = !this.hasClassB
-        this.activeColor = 'yellow'
-        this.fontSize = '30px'
+    methods:{
+      update(){
+        this.myClass = "newClass"
+        this.hasClassA = false
+        this.hasClassB = true
+        this.activeColor = "blue"
+        this.fontSize = "20px"
       }
     }
+
   })
 </script>
 </body>

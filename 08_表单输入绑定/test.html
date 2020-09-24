@@ -49,20 +49,23 @@
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
   new Vue({
-    el: '#demo',
-    data: {
-      username: '',
-      pwd: '',
-      sex: '男',
-      likes: ['foot'],
-      allCitys: [{id: 1, name: 'BJ'}, {id: 2, name: 'SS'}, {id: 3, name: 'SZ'}],
-      cityId: '2',
-      info: ''
+    el:"#demo",
+    data:{
+      username:"",
+      pwd:"",
+      sex:"女",
+      likes:["foot","basket"],
+      allCitys:[
+        {id:0,name:"北京"},
+        {id:1,name:"上海"},
+        {id:2,name:"广州"}
+      ],
+      cityId:2,
+      info:""
     },
-    methods: {
-      handleSubmit () {
-        console.log(this.username, this.pwd, this.sex, this.likes, this.cityId, this.info)
-        alert('提交注册的ajax请求')
+    methods:{
+      handleSubmit(){
+        alert(this.username+"--"+this.pwd+"--"+this.sex+"--"+this.likes+"--"+this.cityId+"--"+this.info)
       }
     }
   })

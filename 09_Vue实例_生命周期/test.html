@@ -22,40 +22,57 @@
   created()/mounted(): 发送ajax请求, 启动定时器等异步任务
   beforeDestory(): 做收尾工作, 如: 清除定时器
 -->
-
 <div id="test">
-  <button @click="destroyVue">destory vue</button>
-  <p v-if="isShow">尚硅谷IT教育</p>
+  <button @click="destroyVM">destroy VM</button>
+  <p v-show="isShow">
+    撒德哈大家哈扣税的
+  </p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
   new Vue({
-    el: '#test',
-    data: {
-      isShow: true
+    el:"#test",
+    data:{
+      isShow:true,
+      intervalId:null
     },
-
-    mounted () {
-      // 执行异步任务
-      this.intervalId = setInterval(() => {
-        console.log('-----')
+    beforeCreate(){
+      console.log("beforeCreate()");
+    },
+    created(){
+      console.log("created()");
+    },
+    beforeMount(){
+      console.log("beforeMount()");
+    },
+    mounted(){//初始化显示之后立即调用
+      console.log("mounted()");
+      intervalId = setInterval(() => {
         this.isShow = !this.isShow
-      }, 1000)
+        console.log("----");
+      },1000)
     },
-
-    beforeDestroy() {
-      console.log('beforeDestroy()')
-      // 执行收尾的工作
-      clearInterval(this.intervalId)
+    beforeUpdate(){
+      console.log("beforeUpdate()");
     },
-
-    methods: {
-      destroyVue () {
+    updated(){
+      console.log("updated()");
+    },
+    beforeDestroy(){
+      //清除定时器
+      clearInterval(intervalId)
+    },
+    destroyed(){
+      console.log("destroyed()");
+    },
+    methods:{
+      destroyVM(){
         this.$destroy()
       }
     }
   })
+
 
 
 </script>

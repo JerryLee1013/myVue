@@ -24,18 +24,21 @@
 
   <h2>1. 绑定监听</h2>
   <button @click="test1">test1</button>
-  <button @click="test2('abc')">test2</button>
-  <button @click="test3('abcd', $event)">test3</button>
+  <button @click="test2('宝宝')">test2</button>
+  <button @click="test3">test3</button>
+  <button @click="test4(123,$event)">test4</button>
 
   <h2>2. 事件修饰符</h2>
-  <a href="http://www.baidu.com" @click.prevent="test4">百度一下</a>
-  <div style="width: 200px;height: 200px;background: red" @click="test5">
-    <div style="width: 100px;height: 100px;background: blue" @click.stop="test6"></div>
+  <div style="width: 200px;height: 200px;background-color:red;" @click="test5">
+    <div style="width: 100px;height: 100px;background-color:blue;" @click.stop="test6">
+
+    </div>
   </div>
+  <a href="https://www.baidu.com" @click.prevent="test7">去百度</a>
 
   <h2>3. 按键修饰符</h2>
-  <input type="text" @keyup.13="test7">
-  <input type="text" @keyup.enter="test7">
+  <input type="text" @keyup.13="test8">
+  <input type="text" @keyup.enter="test8">
 
 </div>
 
@@ -43,34 +46,37 @@
 <script type="text/javascript">
   new Vue({
     el: '#example',
-    data: {
+    data:{
 
     },
-    methods: {
-      test1(event) {
-        alert(event.target.innerHTML)
+    methods:{
+      test1(){
+        alert("test1")
       },
-      test2 (msg) {
+      test2(msg){
         alert(msg)
       },
-      test3 (msg, event) {
-        alert(msg+'---'+event.target.textContent)
+      test3(event){
+        alert(event.target.innerHTML)
       },
+      test4(num,event){
+        alert(num+event.target.innerHTML)
+      },
+      test5(){
+        alert("test5")
+      },
+      test6(event){
+        alert("test6")
+        // event.stopPropagation()
+      },
+      test7(event){
+        // event.preventDefault()
+      },
+      test8(event){
 
-      test4 () {
-        alert('点击了链接')
-      },
-
-      test5 () {
-        alert('out')
-      },
-      test6 () {
-        alert('inner')
-      },
-
-      test7 (event) {
-        console.log(event.keyCode)
         alert(event.target.value)
+
+
       }
     }
   })

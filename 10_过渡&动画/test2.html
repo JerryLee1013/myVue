@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <title>10_过渡&动画2</title>
   <style>
-    .bounce-enter-active {
-      animation: bounce-in .5s;
+    .show-enter-active{
+      animation:showAni 1s;
     }
-    .bounce-leave-active {
-      animation: bounce-in .5s reverse;
+    .show-leave-active{
+      animation:showAni 1s reverse;
     }
-    @keyframes bounce-in {
-      0% {
-        transform: scale(0);
+    @keyframes showAni {
+      0%{
+        transform:scale(0);
       }
-      50% {
-        transform: scale(1.5);
+      50%{
+        transform:scale(1.5);
       }
-      100% {
-        transform: scale(1);
+      100%{
+        transform:scale(1);
       }
     }
   </style>
@@ -26,11 +26,12 @@
 <body>
 
 <div id="example-2">
-  <button @click="show = !show">Toggle show</button>
+ <button @click="show=!show">toggle</button>
   <br>
-  <transition name="bounce">
-    <p v-if="show" style="display: inline-block">Lorem</p>
+  <transition name="show">
+    <p v-show="show" style="display: inline-block;">啊实打实</p>
   </transition>
+
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
