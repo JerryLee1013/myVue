@@ -1,7 +1,8 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <TodoHeader :addTodo="addTodo"/>
+      <!--<TodoHeader @addTodo="addTodo"/>-->
+      <TodoHeader ref="header"/>
       <TodoList :todos="todos" :deleteTodo="deleteTodo"/>
       <TodoFooter :todos="todos" :deleteCompleteTodos="deleteCompleteTodos" :selectAllTodos="selectAllTodos"/>
     </div>
@@ -18,6 +19,9 @@
       return {
         todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
       }
+    },
+    mounted () {
+      this.$refs.header.$on('addTodo', this.addTodo)
     },
     components: {
       TodoHeader,

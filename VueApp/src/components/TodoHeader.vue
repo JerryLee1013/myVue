@@ -13,10 +13,10 @@ export default {
     }
   },
   props: {
-    addTodo: {
-      type: Function,
-      required: true
-    }
+    // addTodo: {
+    //   type: Function,
+    //   required: true
+    // }
   },
   methods: {
     add (event) {
@@ -26,7 +26,8 @@ export default {
           title: title,
           complete: false
         }
-        this.addTodo(todo)
+        // this.addTodo(todo)
+        this.$emit('addTodo', todo)
         this.title = ''
       }
     }
