@@ -6,10 +6,10 @@
 </template>
 
 <script>
-/* eslint-disable */
+
   import HelloWorld from './components/HelloWorld'
   export default {
-    components:{
+    components: {
       HelloWorld
     }
   }

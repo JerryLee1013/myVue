@@ -6,11 +6,11 @@
 </template>
 
 <script>
-/* eslint-disable */
+
   export default {
-    data(){
+    data () {
       return {
-        msg:'Hello Vue Component'
+        msg: 'Hello Vue Component'
       }
     }
   }
