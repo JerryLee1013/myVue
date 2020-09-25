@@ -1,21 +1,17 @@
 <template>
-  <div class="container">
-    <Search/>
-    <Main/>
+  <div>
+    <mt-button type="primary" size="large" @click.native="handleClick">Test</mt-button>
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
-import Search from './components/Search'
-import Main from './components/Main'
+import { Toast } from 'mint-ui'
 export default {
   name: 'App',
-  mounted () {
-  },
-  components: {
-    Search,
-    Main
+  methods: {
+    handleClick () {
+      Toast('提示信息')
+    }
   }
 }
 </script>
