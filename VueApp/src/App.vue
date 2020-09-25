@@ -3,13 +3,19 @@
     <div class="todo-wrap">
       <!--<TodoHeader @addTodo="addTodo"/>-->
       <TodoHeader ref="header"/>
-      <TodoList :todos="todos" :deleteTodo="deleteTodo"/>
+      <TodoList :todos="todos"/>
       <TodoFooter :todos="todos" :deleteCompleteTodos="deleteCompleteTodos" :selectAllTodos="selectAllTodos"/>
     </div>
   </div>
 </template>
 
+<!--
+  绑定事件监听   ---订阅消息
+  触发事件      ---发布消息
+-->
+
 <script>
+  import PubSub from 'pubsub-js'
   import TodoHeader from './components/TodoHeader'
   import TodoList from './components/TodoList'
   import TodoFooter from './components/TodoFooter'
@@ -21,7 +27,13 @@
       }
     },
     mounted () {
+      //  给 <TodoHeader ref="header"/>绑定事件
       this.$refs.header.$on('addTodo', this.addTodo)
+
+      //  订阅消息
+      PubSub.subscribe('deleteTodo', (msg, index) => {
+        this.deleteTodo(index)
+      })
     },
     components: {
       TodoHeader,

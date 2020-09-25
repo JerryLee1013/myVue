@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import PubSub from "pubsub-js"
 export default {
   name: 'TodoItem',
   data () {
@@ -21,10 +22,6 @@ export default {
     index: Number,
     todo: {
       type: Object,
-      required: true
-    },
-    deleteTodo: {
-      type: Function,
       required: true
     }
   },
@@ -41,7 +38,9 @@ export default {
       let index = this.index
       const title = this.todo.title
       if (window.confirm(`确认删除${title}吗`)) {
-        this.deleteTodo(index)
+        //  this.deleteTodo(index)
+        // 发布消息
+        PubSub.publish('deleteTodo',index)
       }
     }
   }
