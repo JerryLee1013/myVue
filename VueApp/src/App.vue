@@ -24,11 +24,12 @@
   import TodoHeader from './components/TodoHeader'
   import TodoList from './components/TodoList'
   import TodoFooter from './components/TodoFooter'
+  import storageUtil from './util/storageUtil'
   export default {
     name: 'App',
     data () {
       return {
-        todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
+        todos: storageUtil.readTodos()
       }
     },
     mounted () {
@@ -66,10 +67,11 @@
         //  深度监视
         deep: true,
         //  处理监视回调函数
-        handler: function (newValue) {
-          //  将todos最新的JSON数据值保存到localStorage
-          window.localStorage.setItem('todos_key', JSON.stringify(newValue))
-        }
+        // handler: function (newValue) {
+        //   //  将todos最新的JSON数据值保存到localStorage
+        //   storageUtil.saveTodos(newValue)
+        // }
+        handler: storageUtil.saveTodos
       }
     },
     computed: {
