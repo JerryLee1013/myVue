@@ -1,53 +1,77 @@
 <template>
-  <div>
-    <header class='site-header jumbotron'>
-      <div class='container'>
-        <div class='row'>
-          <div class='col-xs-12'>
-            <h1>请发表对Vue的评论</h1>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class='container'>
-      <Add :addComment="addComment"/>
-      <List :comments="comments" :deleteComment="deleteComment"/>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <TodoHeader :addTodo="addTodo"/>
+      <TodoList :todos="todos" :deleteTodo="deleteTodo"/>
+      <TodoFooter :todos="todos" :deleteCompleteTodos="deleteCompleteTodos" :selectAllTodos="selectAllTodos"/>
     </div>
   </div>
 </template>
 
 <script>
-  import Add from './components/Add'
-  import List from './components/List'
-
+  import TodoHeader from './components/TodoHeader'
+  import TodoList from './components/TodoList'
+  import TodoFooter from './components/TodoFooter'
   export default {
     name: 'App',
     data () {
       return {
-        comments: [
-          {name: 'Bob', content: 'Vue还不错'},
-          {name: 'Lucy', content: 'Vue比react容易'},
-          {name: 'Jerry', content: 'Vue很好'}
+        todos: [
+          {title: '吃饭', complete: false},
+          {title: '睡觉', complete: false},
+          {title: '打豆豆', complete: false}
         ]
       }
     },
     components: {
-      Add,
-      List
+      TodoHeader,
+      TodoList,
+      TodoFooter
     },
     methods: {
-      //  添加评论
-      addComment (comment) {
-        this.comments.unshift(comment)
+      addTodo (todo) {
+        this.todos.unshift(todo)
       },
-      //  删除评论
-      deleteComment (index) {
-        this.comments.splice(index, 1)
+      deleteTodo (index) {
+        this.todos.splice(index, 1)
+      },
+      deleteCompleteTodos () {
+        this.todos = this.todos.filter(todo => !todo.complete)
+      },
+      selectAllTodos (check) {
+        this.todos.forEach(todo => {
+          todo.complete = check
+        })
       }
     }
   }
 </script>
 
 <style>
+  /*app*/
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  /*main*/
+  .todo-main {
+    margin-left: 0px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 0px;
+  }
 
+  .todo-empty {
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding-left: 5px;
+    margin-top: 10px;
+  }
 </style>
