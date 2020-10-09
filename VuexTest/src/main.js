@@ -3,11 +3,18 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store'
-
+//  引入css文件
+import './base.css'
 /* eslint-disable no-new */
+// new Vue({
+//   el: '#app',
+//   components: { App },
+//   template: '<App/>',
+//   store
+// })
+
 new Vue({
   el: '#app',
-  components: { App },
-  template: '<App/>',
-  store // 所有的组件对象都多了一个$store对象
+  render: h => h(App),
+  store
 })

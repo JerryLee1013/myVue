@@ -1,41 +1,61 @@
 <template>
-  <div>
-    <p>click {{count}} times, count is {{evenOrOdd}}</p>
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-    <button @click="incrementIfOdd">increment if odd</button>
-    <button @click="incrementAsync">increment async</button>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <!--<TodoHeader @addTodo="addTodo"/>-->
+      <TodoHeader ref="header"/>
+      <TodoList/>
+      <TodoFooter/>
+    </div>
   </div>
 </template>
 
+<!--
+  绑定事件监听   ---订阅消息
+  触发事件      ---发布消息
+-->
+
 <script>
-import {mapState, mapGetters, mapActions} from 'vuex'
-export default {
-  computed: {
-    ...mapState(['count']),
-    ...mapGetters(['evenOrOdd'])
-  },
-  methods: {
-    ...mapActions(['increment', 'decrement', 'incrementIfOdd', 'incrementAsync'])
+  import TodoHeader from './components/TodoHeader'
+  import TodoList from './components/TodoList'
+  import TodoFooter from './components/TodoFooter'
+  export default {
+    mounted () {
+      //  异步获取保存的数据
+      this.$store.dispatch('reqTodos', this.$store.state.todos)
+    },
+    components: {
+      TodoHeader,
+      TodoList,
+      TodoFooter
+    }
   }
-  // methods: {
-  //   increment () {
-  //     //  通知vuex去增加
-  //     this.$store.dispatch('increment') // 触发store中对应的action调用
-  //   },
-  //   decrement () {
-  //     this.$store.dispatch('decrement')
-  //   },
-  //   incrementIfOdd () {
-  //     this.$store.dispatch('incrementIfOdd')
-  //   },
-  //   incrementAsync () {
-  //     this.$store.dispatch('incrementAsync')
-  //   }
-  // }
-}
 </script>
 
 <style>
+  /*app*/
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  /*main*/
+  .todo-main {
+    margin-left: 0px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 0px;
+  }
 
+  .todo-empty {
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding-left: 5px;
+    margin-top: 10px;
+  }
 </style>
